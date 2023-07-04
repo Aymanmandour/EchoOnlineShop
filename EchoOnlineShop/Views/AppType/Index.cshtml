@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EchoOnlineShop.Models.AppType>;
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col-6">
+            <h2 class="text-primary">Application Type List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-primary" asp-controller="AppType" asp-action="Create">
+                <i class="fa-solid fa-plus"></i> &nbsp; Create New Application Type
+            </a>
+        </div>
+    </div>
+    <br />
+</div>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="50%">@item.Name</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a class="btn btn-warning mx-2" asp-route-id="@item.ID" asp-controller="AppType" asp-action="Edit"> <i class="fa-solid fa-pen-to-square"></i> @*&nbsp; Edit*@</a>
+                            <a class="btn btn-danger mx-2" asp-route-id="@item.ID" asp-controller="AppType" asp-action="Delete"><i class="fa-regular fa-trash-can"></i> @*&nbsp; Delete*@</a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Application Type Exist</p>
+}
